@@ -5,12 +5,16 @@ export interface Card {
         name: string, 
         moneyScore: number,
         healthScore: number,
-        karmaScore: number
+        karmaScore: number, 
+        addDeck: string, 
+        removeDeck: string, 
     },
     choice2: {
         name: string, 
         moneyScore: number,
         healthScore: number,
-        karmaScore: number
+        karmaScore: number,
+        addDeck: string, 
+        removeDeck: string, 
     }
 }

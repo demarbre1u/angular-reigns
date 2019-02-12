@@ -40,7 +40,10 @@ export class GameComponent implements OnInit {
   isHoveringLeft: boolean = false
 
   // La liste des cartes du jeu
-  cardList: Card[]
+  cardList: any[] = []
+
+  // Les decks dans lesquels le joueur peut tirer une carte
+  availableDecks: string[] = ['base']
 
   // La carte courrante
   currentCard: Card = {
@@ -53,13 +56,17 @@ export class GameComponent implements OnInit {
       name: "Partir", 
       moneyScore: 0,
       healthScore: 0,
-      karmaScore: 0
+      karmaScore: 0, 
+      addDeck: '', 
+      removeDeck: ''
     },
     choice2: {
       name: "Partir", 
       moneyScore: 0,
       healthScore: 0,
-      karmaScore: 0
+      karmaScore: 0, 
+      addDeck: '', 
+      removeDeck: ''
     }
   }
 
@@ -68,7 +75,8 @@ export class GameComponent implements OnInit {
 
   constructor() { 
     // On récupère les cartes du jeu
-    this.cardList = require('../../../assets/cards.json').cards
+    this.cardList['base'] = require('../../../assets/decks/base.json').cards
+    this.cardList['leather'] = require('../../../assets/decks/leather.json').cards
 
     this.cardLoaded = true
   }
@@ -79,16 +87,32 @@ export class GameComponent implements OnInit {
   // Lorsque le joueur clique, on prends en compte son choix et on change la carte courrante
   @HostListener('mousedown', ['$event'])
   userClicked(event) {
-  
+    // On récupère le choix du joueur
     let choice = this.isHoveringLeft ? this.currentCard.choice1 : this.currentCard.choice2
 
+    // On modifie les scores du joueur
     this.moneyScore += choice.moneyScore
     this.healthScore += choice.healthScore
     this.karmaScore += choice.karmaScore
 
-    let randomIndex = Math.round(Math.random() * (this.cardList.length-1))
+    // On regarde s'il a perdu
+    this.checkLoseCondition()
 
-    this.currentCard = this.cardList[ randomIndex ]
+    // On applique les effets de la carte
+    if(choice.addDeck !== '')
+      this.availableDecks.push(choice.addDeck)
+
+    if(choice.removeDeck !== '') 
+      this.availableDecks = this.availableDecks.filter(elem => elem !== choice.removeDeck)
+
+    // On choisit un deck au hasard
+    let randomDeck = Math.round(Math.random() * (this.availableDecks.length-1))
+    let deckName = this.availableDecks[ randomDeck ]
+
+    // On choisit une carte au hasard
+    let randomCard = Math.round(Math.random() * (this.cardList[ deckName ].length-1))
+
+    this.currentCard = this.cardList[ deckName ][ randomCard ]
   }
 
   // Si le joueur hover à gauche, modifie le boolean
@@ -99,5 +123,13 @@ export class GameComponent implements OnInit {
   // Si le joueur hover à droite, modifie le boolean
   hoverRight() {
     this.isHoveringLeft = false  
+  }
+
+  // Vérifie si le joueur a perdu
+  checkLoseCondition() {
+
+    let hasLost = this.moneyScore <= 0 || this.healthScore <= 0 || this.karmaScore <= -100
+
+    console.log('has player lost: ' + hasLost)
   }
 }

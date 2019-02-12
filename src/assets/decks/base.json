@@ -7,29 +7,37 @@
                 "name": "Partir", 
                 "moneyScore": 10,
                 "healthScore": 10,
-                "karmaScore": -10
+                "karmaScore": -10, 
+                "addDeck": "",
+                "removeDeck": ""
             },
             "choice2": {
                 "name": "Rester", 
                 "moneyScore": 5,
                 "healthScore": 5,
-                "karmaScore": -5
+                "karmaScore": -5,
+                "addDeck": "",
+                "removeDeck": ""
             }
         }, 
         {
-            "title": "Carte 2", 
-            "description": "La seconde carte de l'aventure", 
+            "title": "Unlock leather", 
+            "description": ["La seconde carte de l'aventure"], 
             "choice1": {
                 "name": "Continuer", 
                 "moneyScore": 0,
                 "healthScore": 0,
-                "karmaScore": 0
+                "karmaScore": 0,
+                "addDeck": "leather",
+                "removeDeck": ""
             },
             "choice2": {
                 "name": "Tout arrêter", 
                 "moneyScore": 0,
                 "healthScore": 0,
-                "karmaScore": 0
+                "karmaScore": 0,
+                "addDeck": "",
+                "removeDeck": ""
             }
         }
     ]
