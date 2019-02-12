@@ -1,0 +1,36 @@
+{
+    "cards": [
+        {
+            "title": "Carte 1", 
+            "description": "La première carte de l'aventure :)", 
+            "choice1": {
+                "name": "Partir", 
+                "moneyScore": 10,
+                "healthScore": 10,
+                "karmaScore": -10
+            },
+            "choice2": {
+                "name": "Rester", 
+                "moneyScore": 5,
+                "healthScore": 5,
+                "karmaScore": -5
+            }
+        }, 
+        {
+            "title": "Carte 2", 
+            "description": "La seconde carte de l'aventure", 
+            "choice1": {
+                "name": "Continuer", 
+                "moneyScore": 0,
+                "healthScore": 0,
+                "karmaScore": 0
+            },
+            "choice2": {
+                "name": "Tout arrêter", 
+                "moneyScore": 0,
+                "healthScore": 0,
+                "karmaScore": 0
+            }
+        }
+    ]
+}
