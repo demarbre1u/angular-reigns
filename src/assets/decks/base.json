@@ -6,16 +6,16 @@
             "choice1": {
                 "name": "Partir", 
                 "moneyScore": 10,
-                "healthScore": 10,
-                "karmaScore": -10, 
+                "fameScore": 10,
+                "moraleScore": -10, 
                 "addDeck": "",
                 "removeDeck": ""
             },
             "choice2": {
                 "name": "Rester", 
                 "moneyScore": 5,
-                "healthScore": 5,
-                "karmaScore": -5,
+                "fameScore": 5,
+                "moraleScore": -5,
                 "addDeck": "",
                 "removeDeck": ""
             }
@@ -26,16 +26,16 @@
             "choice1": {
                 "name": "Continuer", 
                 "moneyScore": 0,
-                "healthScore": 0,
-                "karmaScore": 0,
+                "fameScore": 0,
+                "moraleScore": 0,
                 "addDeck": "leather",
                 "removeDeck": ""
             },
             "choice2": {
                 "name": "Tout arrêter", 
                 "moneyScore": 0,
-                "healthScore": 0,
-                "karmaScore": 0,
+                "fameScore": 0,
+                "moraleScore": 0,
                 "addDeck": "",
                 "removeDeck": ""
             }
