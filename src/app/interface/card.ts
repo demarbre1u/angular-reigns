@@ -1,6 +1,6 @@
 export interface Card {
     title: string, 
-    description: string, 
+    description: string[], 
     choice1: {
         name: string, 
         moneyScore: number,

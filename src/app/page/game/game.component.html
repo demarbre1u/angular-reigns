@@ -27,6 +27,8 @@
       <div [style.visibility]="!isHoveringLeft ? 'visible' : 'hidden'">{{ currentCard.choice2.name }}</div>
     </span>
   </div>
-
-  <p id="card-description" *ngIf="cardLoaded">{{ currentCard.description }}</p>
+  
+  <div *ngIf="cardLoaded" id="card-description">
+    <p *ngFor="let desc of currentCard.description">{{ desc }}</p>
+  </div>
 </div>

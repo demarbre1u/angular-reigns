@@ -2,7 +2,7 @@
     "cards": [
         {
             "title": "Carte 1", 
-            "description": "La première carte de l'aventure :)", 
+            "description": ["La première carte de l'aventure :)"], 
             "choice1": {
                 "name": "Partir", 
                 "moneyScore": 10,

@@ -10,12 +10,12 @@ import { Card } from '../../interface/card';
     trigger('isHovering', [
 
       state('isHoveringLeft', style({
-        transform: 'rotate(-5deg) translate(-50%, -50%)', 
+        transform: 'rotate(-3deg) translate(-50%, -50%)', 
         transformOrigin: 'top'
       })),
 
       state('isHoveringRight', style({
-        transform: 'rotate(5deg) translate(-50%, -50%)',
+        transform: 'rotate(3deg) translate(-50%, -50%)',
         transformOrigin: 'left'
       })),
   
@@ -33,7 +33,7 @@ export class GameComponent implements OnInit {
   
   // Les différents score du joueur (argent, santé, karma)
   moneyScore: number = 50
-  healthScore: number = 80
+  healthScore: number = 100
   karmaScore: number = 0
 
   // Boolean indiquant dans quelle direction se trouve la carte
@@ -44,19 +44,22 @@ export class GameComponent implements OnInit {
 
   // La carte courrante
   currentCard: Card = {
-    title: "Carte 1", 
-    description: "La première carte de l'aventure :)", 
+    title: "A l'aventure !", 
+    description: [
+      "Votre vie de marchand initérant commence maintenant !",
+      "Il est temps de partir à l'aventure."
+    ], 
     choice1: {
       name: "Partir", 
-      moneyScore: 10,
-      healthScore: 10,
-      karmaScore: -10
+      moneyScore: 0,
+      healthScore: 0,
+      karmaScore: 0
     },
     choice2: {
-      name: "Rester", 
-      moneyScore: 5,
-      healthScore: 5,
-      karmaScore: -5
+      name: "Partir", 
+      moneyScore: 0,
+      healthScore: 0,
+      karmaScore: 0
     }
   }
 

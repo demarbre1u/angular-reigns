@@ -52,7 +52,7 @@ header div {
     position: absolute;
 
     left: 50%;
-    top: 35%;
+    top: 40%;
     transform: translate(-50%, -50%); 
 
     width: 325px;
@@ -77,10 +77,12 @@ header div {
 #card-description {
     position: absolute;
     left: 50%;
-    top: 65%;
+    top: 75%;
     transform: translate(-50%, -50%);
 
     color: #ecf0f1;
+    width: 80%;
+    text-align: center;
 }
 
 #choices {
@@ -89,6 +91,6 @@ header div {
 }
 
 #choices div {
-    margin: 10px;
+    margin: 10px 15px;
     color: #ecf0f1;
 }
