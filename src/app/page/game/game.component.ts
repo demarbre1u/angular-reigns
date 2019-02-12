@@ -45,7 +45,7 @@ export class GameComponent implements OnInit {
   // Les decks dans lesquels le joueur peut tirer une carte
   availableDecks: string[] = ['base']
 
-  // La carte courrante
+  // La carte par défaut / courrante
   currentCard: Card = {
     title: "A l'aventure !", 
     description: [
