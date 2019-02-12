@@ -1,0 +1,20 @@
+<header>
+  <div>Argent</div>
+  <div>Santé</div>
+  <div>Karma</div>
+</header>
+
+<div id="wrapper">
+  <div (mouseover)="hoverLeft()" id="left"></div>
+  <div (mouseover)="hoverRight()" id="right"></div>
+
+  <div [@isHovering]="isHoveringLeft ? 'isHoveringLeft' : 'isHoveringRight'" id="card">
+
+    <h2 id="card-title">Nom du perso / event</h2>
+
+    <span id="choices">
+      <div [style.visibility]="isHoveringLeft ? 'visible' : 'hidden'">Oui</div>
+      <div [style.visibility]="!isHoveringLeft ? 'visible' : 'hidden'">Non</div>
+    </span>
+  </div>
+</div>
