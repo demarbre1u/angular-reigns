@@ -23,14 +23,15 @@
 
 <div id="wrapper">
   <div (mouseover)="hoverLeft()" id="left"></div>
+  <div (mouseover)="hoverCenter()" id="center"></div>
   <div (mouseover)="hoverRight()" id="right"></div>
 
-  <div *ngIf="cardLoaded" [@isHovering]="isHoveringLeft ? 'isHoveringLeft' : 'isHoveringRight'" id="card">
+  <div *ngIf="cardLoaded" [@isHovering]="getCardState()" id="card">
     <h2 id="card-title">{{ currentCard.title }}</h2>
 
     <span id="choices">
-      <div [style.visibility]="isHoveringLeft ? 'visible' : 'hidden'">{{ currentCard.choice1.name }}</div>
-      <div [style.visibility]="!isHoveringLeft ? 'visible' : 'hidden'">{{ currentCard.choice2.name }}</div>
+      <div [style.visibility]="isHoveringLeft || getCardState() === 'default' ? 'visible' : 'hidden'">{{ currentCard.choice1.name }}</div>
+      <div [style.visibility]="isHoveringRight || getCardState() === 'default' ? 'visible' : 'hidden'">{{ currentCard.choice2.name }}</div>
     </span>
   </div>
   

@@ -18,12 +18,33 @@ import { Card } from '../../interface/card';
         transform: 'rotate(3deg) translate(-50%, -50%)',
         transformOrigin: 'left'
       })),
+
+      state('default', style({
+        transform: 'rotate(0) translate(-50%, -50%)',
+        transformOrigin: 'left'
+      })),
   
       transition('isHoveringRight => isHoveringLeft', [
         animate('0.5s 0s ease-out')
       ]),
 
+      transition('isHoveringRight => default', [
+        animate('0.5s 0s ease-out')
+      ]),
+
+      transition('default => isHoveringLeft', [
+        animate('0.5s 0s ease-out')
+      ]),
+
+      transition('default => isHoveringRight', [
+        animate('0.5s 0s ease-out')
+      ]),
+
       transition('isHoveringLeft => isHoveringRight', [
+        animate('0.5s 0s ease-out')
+      ]),
+
+      transition('isHoveringLeft => default', [
         animate('0.5s 0s ease-out')
       ]),
     ])
@@ -38,6 +59,7 @@ export class GameComponent implements OnInit {
 
   // Boolean indiquant dans quelle direction se trouve la carte
   isHoveringLeft: boolean = false
+  isHoveringRight: boolean = false
 
   // La liste des cartes du jeu
   cardList: any[] = []
@@ -89,6 +111,10 @@ export class GameComponent implements OnInit {
   // Lorsque le joueur clique, on prends en compte son choix et on change la carte courrante
   @HostListener('mousedown', ['$event'])
   userClicked(event) {
+
+    // Si la carte n'est pas penchée, on ingore le click
+    if(this.getCardState() === 'default') return;
+
     // On récupère le choix du joueur
     let choice = this.isHoveringLeft ? this.currentCard.choice1 : this.currentCard.choice2
 
@@ -105,7 +131,15 @@ export class GameComponent implements OnInit {
     this.updateCurrentCard(choice)
   }
 
-  // Mets à jour les scores du joueurs
+  // Retourne l'état actuel de la carte 
+  getCardState() {
+    if(this.isHoveringLeft) return 'isHoveringLeft'
+    if(this.isHoveringRight) return 'isHoveringRight'
+
+    return 'default'
+  }
+
+  // Met à jour les scores du joueur
   updateScore(choice) {
     this.moneyScore += choice.moneyScore
     this.fameScore += choice.fameScore
@@ -122,6 +156,7 @@ export class GameComponent implements OnInit {
       this.availableDecks = this.availableDecks.filter(elem => elem !== choice.removeDeck)
   }
 
+  // Met à jour la carte courrante
   updateCurrentCard(choice) {
     // On choisit un deck au hasard
     let randomDeck = Math.round(Math.random() * (this.availableDecks.length-1))
@@ -133,14 +168,22 @@ export class GameComponent implements OnInit {
     this.currentCard = this.cardList[ deckName ][ randomCard ]
   }
 
-  // Si le joueur hover à gauche, modifie le boolean
+  // Si le joueur hover à gauche, modifie les booleans
   hoverLeft() {
     this.isHoveringLeft = true
+    this.isHoveringRight = false
   }
 
-  // Si le joueur hover à droite, modifie le boolean
+  // Si le joueur hover à droite, modifie les booleans
   hoverRight() {
     this.isHoveringLeft = false  
+    this.isHoveringRight = true  
+  }
+
+  // Si le joueur hover au centre, modifie les booleans
+  hoverCenter() {
+    this.isHoveringLeft = false  
+    this.isHoveringRight = false  
   }
 
   // Vérifie si le joueur a perdu
