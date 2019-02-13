@@ -10,18 +10,18 @@ import { Card } from '../../interface/card';
     trigger('isHovering', [
 
       state('isHoveringLeft', style({
-        transform: 'rotate(-3deg) translate(-50%, -50%)', 
-        transformOrigin: 'top'
+        transform: 'rotate(-3deg)', 
+        transformOrigin: 'bottom right'
       })),
 
       state('isHoveringRight', style({
-        transform: 'rotate(3deg) translate(-50%, -50%)',
-        transformOrigin: 'left'
+        transform: 'rotate(3deg)',
+        transformOrigin: 'bottom left'
       })),
 
       state('default', style({
-        transform: 'rotate(0) translate(-50%, -50%)',
-        transformOrigin: 'left'
+        transform: 'rotate(0)',
+        transformOrigin: 'bottom'
       })),
   
       transition('isHoveringRight => isHoveringLeft', [
@@ -69,10 +69,10 @@ export class GameComponent implements OnInit {
 
   // La carte par défaut / courrante
   currentCard: Card = {
-    title: "A l'aventure !", 
+    name: "A l'aventure !", 
+    title: "Maison", 
     description: [
-      "Votre vie de marchand initérant commence maintenant !",
-      "Il est temps de partir à l'aventure."
+      "Le grand jour est arrivé.",
     ], 
     choice1: {
       name: "Partir", 
@@ -109,9 +109,8 @@ export class GameComponent implements OnInit {
   }
 
   // Lorsque le joueur clique, on prends en compte son choix et on change la carte courrante
-  @HostListener('mousedown', ['$event'])
-  userClicked(event) {
-
+  @HostListener('click', ['$event.target'])
+  userClicked(btn) {
     // Si la carte n'est pas penchée, on ingore le click
     if(this.getCardState() === 'default') return;
 

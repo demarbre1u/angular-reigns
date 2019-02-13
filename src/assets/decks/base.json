@@ -1,6 +1,7 @@
 {
     "cards": [
         {
+            "name": "Carte 1",
             "title": "Carte 1", 
             "description": ["La première carte de l'aventure :)"], 
             "choice1": {
@@ -21,6 +22,7 @@
             }
         }, 
         {
+            "name": "Unlock leather",
             "title": "Unlock leather", 
             "description": ["La seconde carte de l'aventure"], 
             "choice1": {

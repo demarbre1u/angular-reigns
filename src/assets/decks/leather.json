@@ -1,6 +1,7 @@
 {
     "cards": [
         {
+            "name": "Leather 1",
             "title": "Leather 1", 
             "description": ["La première carte de l'aventure :)"], 
             "choice1": {
@@ -21,6 +22,7 @@
             }
         }, 
         {
+            "name": "Leave leather",
             "title": "Leave leather", 
             "description": ["La seconde carte de l'aventure"], 
             "choice1": {
