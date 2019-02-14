@@ -57,19 +57,9 @@ export class GameComponent implements OnInit {
     ], 
     choice1: {
       name: "Partir", 
-      moneyScore: 0,
-      fameScore: 0,
-      moraleScore: 0, 
-      addDeck: '', 
-      removeDeck: ''
     },
     choice2: {
       name: "Partir", 
-      moneyScore: 0,
-      fameScore: 0,
-      moraleScore: 0, 
-      addDeck: '', 
-      removeDeck: ''
     }
   }
 
@@ -121,25 +111,44 @@ export class GameComponent implements OnInit {
 
   // Met à jour les scores du joueur
   updateScore(choice) {
-    this.moneyScore += choice.moneyScore
-    this.fameScore += choice.fameScore
-    this.moraleScore += choice.moraleScore
+    this.moneyScore += choice.moneyScore === undefined ? 0 : choice.moneyScore
+    this.fameScore += choice.fameScore === undefined ? 0 : choice.fameScore
+    this.moraleScore += choice.moraleScore === undefined ? 0 : choice.moraleScore
     this.currentDay++
   }
 
   // Applique les effets de la carte courante
   applyCardEffect(choice) {
-    if(choice.addDeck !== '')
-      this.availableDecks.push(choice.addDeck)
+    // S'il n'y a pas d'action, on ne fait rien
+    if(choice.actions === undefined) return
 
-    if(choice.removeDeck !== '') 
-      this.availableDecks = this.availableDecks.filter(elem => elem !== choice.removeDeck)
+    // Action pour ajouter un deck à la liste des decks
+    let addDeck = (deck) => {
+      this.availableDecks.push(deck)
+    } 
+
+    // Action pour retirer un deck à la liste des decks
+    let removeDeck = (deck) => {
+      this.availableDecks = this.availableDecks.filter(elem => elem !== deck)
+    }
+
+    // On clone nos actions pour éviter d'ajouter les quotes plusieurs fois
+    let actions = JSON.parse(JSON.stringify(choice.actions))
+
+    // On parse les infos de l'action pour pouvoir l'exécuter
+    actions.forEach(action => {
+      action.args = action.args.map(arg => `'${arg}'`)
+
+      let command = `${action.command}(${action.args.join(', ')})`
+
+      eval(command)
+    })
   }
 
   // Met à jour la carte courrante
   updateCurrentCard(choice) {
     // On choisit un deck au hasard
-    let randomDeck = Math.round(Math.random() * (this.availableDecks.length-1))
+    let randomDeck = this.availableDecks.length === 1 ? 0 : Math.round(Math.random() * (this.availableDecks.length-1))
     let deckName = this.availableDecks[ randomDeck ]
 
     // On choisit une carte au hasard

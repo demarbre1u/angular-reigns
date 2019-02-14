@@ -6,19 +6,15 @@
             "description": ["La première carte de l'aventure :)"], 
             "choice1": {
                 "name": "Partir", 
-                "moneyScore": 10,
-                "fameScore": 10,
-                "moraleScore": -10,
-                "addDeck": "",
-                "removeDeck": ""
+                "moneyScore": 1,
+                "fameScore": 1,
+                "moraleScore": 1
             },
             "choice2": {
                 "name": "Rester", 
-                "moneyScore": 5,
-                "fameScore": 5,
-                "moraleScore": -5,
-                "addDeck": "",
-                "removeDeck": ""
+                "moneyScore": -1,
+                "fameScore": -1,
+                "moraleScore": -1
             }
         }, 
         {
@@ -27,19 +23,15 @@
             "description": ["La seconde carte de l'aventure"], 
             "choice1": {
                 "name": "Continuer", 
-                "moneyScore": 0,
-                "fameScore": 0,
-                "moraleScore": 0,
-                "addDeck": "",
-                "removeDeck": "leather"
+                "actions": [
+                    {
+                        "command": "removeDeck", 
+                        "args": ["leather"]
+                    }
+                ]
             },
             "choice2": {
-                "name": "Tout arrêter", 
-                "moneyScore": 0,
-                "fameScore": 0,
-                "moraleScore": 0,
-                "addDeck": "",
-                "removeDeck": ""
+                "name": "Tout arrêter"
             }
         }
     ]
