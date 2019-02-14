@@ -24,27 +24,7 @@ import { Card } from '../../interface/card';
         transformOrigin: 'bottom'
       })),
   
-      transition('isHoveringRight => isHoveringLeft', [
-        animate('0.5s 0s ease-out')
-      ]),
-
-      transition('isHoveringRight => default', [
-        animate('0.5s 0s ease-out')
-      ]),
-
-      transition('default => isHoveringLeft', [
-        animate('0.5s 0s ease-out')
-      ]),
-
-      transition('default => isHoveringRight', [
-        animate('0.5s 0s ease-out')
-      ]),
-
-      transition('isHoveringLeft => isHoveringRight', [
-        animate('0.5s 0s ease-out')
-      ]),
-
-      transition('isHoveringLeft => default', [
+      transition('isHoveringLeft => default, default => isHoveringLeft, isHoveringRight => default, default => isHoveringRight, isHoveringRight => isHoveringLeft, isHoveringLeft => isHoveringRight', [
         animate('0.5s 0s ease-out')
       ]),
     ])
@@ -69,7 +49,7 @@ export class GameComponent implements OnInit {
 
   // La carte par défaut / courrante
   currentCard: Card = {
-    name: "A l'aventure !", 
+    name: "Début !", 
     title: "Maison", 
     description: [
       "Le grand jour est arrivé.",
