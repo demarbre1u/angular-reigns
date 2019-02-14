@@ -5,11 +5,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameComponent } from './page/game/game.component';
+import { GameoverComponent } from './page/gameover/gameover.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
+    GameoverComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Card } from '../../interface/card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -34,8 +35,8 @@ export class GameComponent implements OnInit {
   
   // Les différents score du joueur (budget, réputation, motivation)
   moneyScore: number = 50
-  fameScore: number = 100
-  moraleScore: number = 0
+  fameScore: number = 50
+  moraleScore: number = 50
 
   // Boolean indiquant dans quelle direction se trouve la carte
   isHoveringLeft: boolean = false
@@ -77,7 +78,7 @@ export class GameComponent implements OnInit {
   // Boolean qui détermine si toutes les cartes ont été chargées avant d'afficher le jeu
   cardLoaded = false
 
-  constructor() { 
+  constructor(private router: Router) { 
     // On récupère les cartes du jeu
     this.cardList['base'] = require('../../../assets/decks/base.json').cards
     this.cardList['leather'] = require('../../../assets/decks/leather.json').cards
@@ -171,5 +172,8 @@ export class GameComponent implements OnInit {
     let hasLost = this.moneyScore <= 0 || this.fameScore <= 0 || this.fameScore >= 100 || this.moraleScore <= 0 ||this.moraleScore >= 100
 
     console.log('has player lost: ' + hasLost)
+
+    // Si le joueur a perdu, on le dirige vers la page de Game Over
+    if(hasLost) this.router.navigate(['gameover'])
   }
 }
