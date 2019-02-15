@@ -138,12 +138,17 @@ export class GameComponent implements OnInit {
     let defaultColor = this.defaultColor
     color = JSON.parse(JSON.stringify(defaultColor))
 
-    color.green -= score
 
     if(score > 0)
+    {
+      color.green -= score
       color.blue += score
+    }
     else
-      color.red += score
+    {
+      color.green += score
+      color.red -= score
+    }
 
     return color
   }
