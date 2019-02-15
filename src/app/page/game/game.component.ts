@@ -1,7 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Card } from '../../interface/card';
+import { Card } from '../../interface/card.interface';
 import { Router } from '@angular/router';
+import { Color } from 'src/app/interface/color.interface';
 
 @Component({
   selector: 'app-game',
@@ -33,10 +34,18 @@ import { Router } from '@angular/router';
 })
 export class GameComponent implements OnInit {
   
+  // Les valeurs par défaut d'une couleur
+  defaultColor: Color = {red: 100, green: 200, blue: 100}
+
+  // Les couleurs des différentes icones dans le menu
+  moneyColor: Color = {red: 100, green: 200, blue: 100}
+  fameColor: Color = {red: 100, green: 200, blue: 100}
+  moraleColor: Color = {red: 100, green: 200, blue: 100}
+
   // Les différents score du joueur (budget, réputation, motivation)
-  moneyScore: number = 50
-  fameScore: number = 50
-  moraleScore: number = 50
+  moneyScore: number = 0  
+  fameScore: number = 0
+  moraleScore: number = 0
 
   // Boolean indiquant dans quelle direction se trouve la carte
   isHoveringLeft: boolean = false
@@ -111,10 +120,32 @@ export class GameComponent implements OnInit {
 
   // Met à jour les scores du joueur
   updateScore(choice) {
+    // On calcule les nouveaux scores
     this.moneyScore += choice.moneyScore === undefined ? 0 : choice.moneyScore
     this.fameScore += choice.fameScore === undefined ? 0 : choice.fameScore
     this.moraleScore += choice.moraleScore === undefined ? 0 : choice.moraleScore
+
+    // On calcule les nouvelles couleurs
+    this.moneyColor = this.computeNewColor(this.moneyColor, this.moneyScore)
+    this.fameColor = this.computeNewColor(this.fameColor, this.fameScore)
+    this.moraleColor = this.computeNewColor(this.moraleColor, this.moraleScore)
+
     this.currentDay++
+  }
+
+  // Calcule les nouvelles valeurs d'une couleur
+  computeNewColor(color, score) {
+    let defaultColor = this.defaultColor
+    color = JSON.parse(JSON.stringify(defaultColor))
+
+    color.green -= score
+
+    if(score > 0)
+      color.blue += score
+    else
+      color.red += score
+
+    return color
   }
 
   // Applique les effets de la carte courante
@@ -178,7 +209,7 @@ export class GameComponent implements OnInit {
   // Vérifie si le joueur a perdu
   checkLoseCondition() {
 
-    let hasLost = this.moneyScore <= 0 || this.fameScore <= 0 || this.fameScore >= 100 || this.moraleScore <= 0 ||this.moraleScore >= 100
+    let hasLost = this.moneyScore <= -100 || this.fameScore <= -100 || this.fameScore >= 100 || this.moraleScore <= -100 ||this.moraleScore >= 100
 
     console.log('has player lost: ' + hasLost)
 
