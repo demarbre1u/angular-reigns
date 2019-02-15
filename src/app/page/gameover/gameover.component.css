@@ -1,6 +1,6 @@
 #wrapper {
-    background-color: #34495e;
-    color: #ecf0f1;
+    background-color: var(--black);
+    color: var(--white);
 
     width: 100vw;
     height: 100vh;
@@ -13,8 +13,8 @@
 
 #replay-btn {
     background-color: transparent;
-    color: #3498db;
-    border: 1.5px solid #3498db;
+    color: var(--white);
+    border: 1.5px solid var(--white);
     border-radius: 4px;
     font-size: 18px;
 
@@ -29,8 +29,8 @@
 #replay-btn:hover {
     cursor: pointer;
 
-    color: #34495e;
-    background-color: #3498db;
+    color: var(--black);
+    background-color: var(--white);
 
     transition: color, background-color;
     transition-duration: 200ms;

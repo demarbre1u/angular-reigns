@@ -1,39 +1,20 @@
 <header>
   <h2>AngularReigns</h2>
 
-  <span>
-    <div [style.background-color]=" 'rgb(' + moneyColor.red + ', ' + moneyColor.green + ', ' + moneyColor.blue + ')' ">
-      <img src="assets/icons/money.svg" alt="">
-    </div>
-    <div [style.background-color]=" 'rgb(' + fameColor.red + ', ' + fameColor.green + ', ' + fameColor.blue + ')' ">
-      <img src="assets/icons/heart.svg" alt="">
-    </div>
-    <div [style.background-color]=" 'rgb(' + moraleColor.red + ', ' + moraleColor.green + ', ' + moraleColor.blue + ')' ">
-      <img src="assets/icons/smile.svg" alt="">
-    </div>
-  </span>
-
-  <!--
-  <span>
-    <div>
-      <span>Budget</span>
-      <span>{{ moneyScore }}</span>
-    </div>
-  
-    <div>
-      <span>Réputation</span>
-      <span>{{ fameScore }}</span>
-    </div>
-  
-    <div>
-      <span>Motivation</span>
-      <span>{{ moraleScore }}</span>
-    </div>
-  </span>
-  -->
-
   <h2>Jour {{ currentDay }}</h2>
 </header>
+
+<span id="score">
+  <div [style.background-color]=" 'rgb(' + moneyColor.red + ', ' + moneyColor.green + ', ' + moneyColor.blue + ')' ">
+    <img src="assets/icons/money.svg" alt="">
+  </div>
+  <div [style.background-color]=" 'rgb(' + fameColor.red + ', ' + fameColor.green + ', ' + fameColor.blue + ')' ">
+    <img src="assets/icons/heart.svg" alt="">
+  </div>
+  <div [style.background-color]=" 'rgb(' + moraleColor.red + ', ' + moraleColor.green + ', ' + moraleColor.blue + ')' ">
+    <img src="assets/icons/smile.svg" alt="">
+  </div>
+</span>
 
 <div id="wrapper">
   <h1 *ngIf="cardLoaded">{{ currentCard.name }}</h1>
